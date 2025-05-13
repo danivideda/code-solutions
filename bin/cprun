@@ -25,7 +25,6 @@ compiler_path="/opt/homebrew/bin/g++-14"
 $compiler_path -std=c++23 -O2 -Wall $src_file_path -o $compiled_file_path
 
 # run
-result_file_path="${compiled_file_path%/*}/result.txt"
 $compiled_file_path < $input_file_path
 
 # cleanup
