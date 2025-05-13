@@ -1,0 +1,32 @@
+#!/bin/bash
+
+# make sure we have two arguments
+if [[ $# -ne 2 ]]; then
+    echo "Need 2 parameters, got $#"
+    exit 1
+fi
+
+# get the file path
+src_file_path="$PWD/$1"
+compiled_file_path="$PWD/${1%/*}/temp.bin"
+input_file_path="$PWD/$2"
+
+if [[ ! -f $src_file_path ]]; then
+    echo "file: $src_file_path does not exist; 1"
+    exit 1
+fi
+if [[ ! -f $input_file_path ]]; then
+    echo "file: $input_file_path does not exist; 2"
+    exit 1
+fi
+
+# compile
+compiler_path="/opt/homebrew/bin/g++-14"
+$compiler_path -std=c++23 -O2 -Wall $src_file_path -o $compiled_file_path
+
+# run
+result_file_path="${compiled_file_path%/*}/result.txt"
+$compiled_file_path < $input_file_path
+
+# cleanup
+rm $compiled_file_path
