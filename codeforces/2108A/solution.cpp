@@ -1,6 +1,8 @@
 #include <bits/stdc++.h>
 using namespace std;
 
+#define cval(x) cout << #x << " = " << x << " \n"
+
 int main()
 {
     int T;
@@ -16,7 +18,6 @@ int main()
 
         cout << ans << '\n';
     }
-    
 
     return 0;
 }
